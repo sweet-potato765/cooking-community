@@ -1,10 +1,11 @@
-// 회원가입
 import { auth } from "./firebase.js";
 import {
+  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+// 회원가입
 window.signup = async function () {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -28,7 +29,7 @@ window.signup = async function () {
 };
 
 // 로그인
-window.login = async () => {
+window.login = async function () {
   const email = document.getElementById("email").value;
   const pw = document.getElementById("password").value;
 
@@ -49,6 +50,4 @@ window.login = async () => {
   } catch (e) {
     alert("로그인 실패: " + e.message);
   }
-
 };
-
