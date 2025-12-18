@@ -1,25 +1,29 @@
+// 회원가입
+import { auth } from "./firebase.js";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// 회원가입
-window.signup = async () => {
+window.signup = async function () {
   const email = document.getElementById("email").value;
-  const pw = document.getElementById("password").value;
+  const password = document.getElementById("password").value;
 
-  if (!email || !pw) {
+  if (!email || !password) {
     alert("이메일과 비밀번호를 입력하세요");
     return;
   }
 
   try {
-    const userCred = await createUserWithEmailAndPassword(auth, email, pw);
-    await sendEmailVerification(userCred.user);
-    alert("이메일 인증 메일을 보냈습니다. 인증 후 로그인하세요.");
-  } catch (e) {
-    alert(e.message);
+    const userCredential =
+      await createUserWithEmailAndPassword(auth, email, password);
+
+    await sendEmailVerification(userCredential.user);
+
+    alert("회원가입 성공! 이메일 인증을 확인하세요.");
+    location.href = "login.html";
+  } catch (error) {
+    alert(error.message);
   }
 };
 
@@ -47,3 +51,4 @@ window.login = async () => {
   }
 
 };
+
