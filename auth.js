@@ -1,5 +1,3 @@
-// auth.js
-import { auth } from "./firebase.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -47,4 +45,5 @@ window.login = async () => {
   } catch (e) {
     alert("로그인 실패: " + e.message);
   }
+
 };
