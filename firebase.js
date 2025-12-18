@@ -1,7 +1,10 @@
-// firebase.js
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAqQ7R8HRu5ZyoL9nvwTfFj2CNQzhVsTRk",
   authDomain: "cooking-community-bf26e.firebaseapp.com",
@@ -12,12 +15,14 @@ const firebaseConfig = {
   measurementId: "G-8XHR9RFRJ8"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const analytics = getAnalytics(app);
 
 window.logout = () => {
   signOut(auth).then(() => {
     alert("로그아웃 되었습니다");
     location.href = "login.html";
   });
+
 };
